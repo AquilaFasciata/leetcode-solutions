@@ -20,7 +20,6 @@ class Solution {
           palinSize += charItem.second;
         }
       }
-      delete &charMap;
       return palinSize;
     }
 };
