@@ -5,28 +5,37 @@
 using namespace std;
 
 class Solution {
-  public:
-    int longestPalindrome(string s) {
-      map<char, int> charMap;
-      for (int i = 0; i < size(s); i++) {
-        charMap[s[i]]++; 
-      }
-      int palinSize = 0;
-      for (auto const& charItem : charMap) {
-        if (charItem.second < 2) {
-          continue;
+public:
+    vector<string> commonChars(vector<string>& words) {
+      vector<map<char, int>> charCounts;
+      charCounts.reserve(words.size());
+      for (auto const& word : words) {
+        map<char, int> letterFreqMap;
+        for (char const& letter : word) {
+          letterFreqMap[letter]++;
         }
-        else {
-          palinSize += charItem.second;
-        }
+        charCounts.push_back(letterFreqMap);
       }
-      return palinSize;
+    // Right now there's a vector with a map of the frequency of each character.
+    // Next, logic to check what the lowest count of each character in the arrays are;
+    // then add the characters as needed to the map
     }
 };
 
 int main() {
   Solution sol = Solution();
-  int num = sol.longestPalindrome("abcccccdd");
-  cout << "Num: " << num << '\n';
+  vector<string> vect{"cool","lock","cook"};
+  vector<string> num = sol.commonChars(vect);
+  vector<string> vect2{"acabcddd","bcbdbcbd","baddbadb","cbdddcac","aacbcccd","ccccddda","cababaab","addcaccd"};
+  vector<string> num2 = sol.commonChars(vect2);
+  cout << "[ ";
+  for (auto const& item : num) {
+    cout << "\"" << item << "\", ";
+  }
+  cout << "]\n";
+  cout << "[ ";
+  for (auto const& item : num2) {
+    cout << "\"" << item << "\", ";
+  }
   return 0;
 }
