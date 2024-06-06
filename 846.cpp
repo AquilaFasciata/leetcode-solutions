@@ -11,7 +11,7 @@ private:
             return index;
         }
         if (index + 1 > nums.size()) {
-            return -1
+            return -1;
         }
         return nextNotZero(index + 1, nums);
     }
