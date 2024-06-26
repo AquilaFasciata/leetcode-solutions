@@ -14,7 +14,7 @@ class Solution {
         indicies.push_back(i);
         break;
       } else {
-        int diff = abs(target - nums[i]);
+        int diff = target - nums[i];
         diffMap[diff] = i;
       }
     }
