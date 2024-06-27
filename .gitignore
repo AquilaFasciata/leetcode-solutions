@@ -3,3 +3,8 @@ a.out
 .vscode/settings.json
 .vscode/tasks.json
 main
+
+
+# Added by cargo
+
+/target
