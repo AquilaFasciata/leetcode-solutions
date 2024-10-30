@@ -1,5 +1,5 @@
 #include <cmath>
-#include <numeric>
+#include <iostream>
 #include <string>
 #include <vector>
 struct ListNode {
@@ -8,6 +8,20 @@ struct ListNode {
   ListNode() : val(0), next(nullptr) {}
   ListNode(int x) : val(x), next(nullptr) {}
   ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+std::ostream &operator<<(std::ostream &os, const ListNode *node) {
+  os << "ListNode { ";
+  const ListNode *current = node;
+  while (current) {
+    os << current->val;
+    if (current->next != nullptr) {
+      os << " -> ";
+    }
+    current = current->next;
+  }
+  os << " }";
+  return os;
 };
 
 class Solution {
@@ -28,6 +42,7 @@ public:
       l2 = l2->next;
     }
     int result = num1 + num2;
+    std::cout << "Result is " << result << '\n';
     std::string result_str = std::to_string(result);
 
     ListNode *new_list = new ListNode();
@@ -42,4 +57,24 @@ public:
   }
 };
 
-int main(int argc, char *argv[]) { return 0; }
+ListNode *build_list(std::vector<int> nums) {
+  ListNode *new_list = nullptr;
+  for (const int num : nums) {
+    new_list = new ListNode(num, new_list);
+  }
+  return new_list;
+}
+
+int main(int argc, char *argv[]) {
+  Solution sol = Solution();
+  std::vector<int> nums = {9, 9, 9, 9, 9, 9, 9, 9, 9, 1};
+  std::vector<int> num2 = {9};
+  ListNode *big_num = build_list(nums);
+  ListNode *small = build_list(num2);
+  std::cout << small << '\n';
+  ListNode *new_nums = sol.addTwoNumbers(big_num, small);
+
+  std::cout << new_nums;
+
+  return 0;
+}
