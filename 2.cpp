@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
 struct ListNode {
   int val;
   ListNode *next;
